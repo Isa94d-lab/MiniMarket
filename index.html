@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Agregamos type="module" para que el archivo JS sea reconocido como módulo -->
+    <script type="module" src="appi.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="conteiner1">
+        <!-- Input para que el usuario ingrese su ID -->
+        <label for="id_Usuario" class="form-label">ID: </label>
+        <input type="text" id="id_Usuario" class="form-control">
+
+        <!-- Nombre del usuario -->
+        <label for="nombre_Usuario" class="form-label">Nombre del usuario: </label>
+        <input type="text" id="nombre_Usuario" class="form-control">
+
+        <!-- Apellido del usuario -->
+        <label for="apellido_Usuario" class="form-label">Apellido del usuario: </label>
+        <input type="text" id="apellido_Usuario" class="form-control">
+
+        <!-- Dirección del usuario -->
+        <label for="direccion_Usuario" class="form-label">Dirección: </label>
+        <input type="text" id="direccion_Usuario" class="form-control">
+
+        <!-- Email del usuario -->
+        <label for="email_Usuario" class="form-label">Email: </label>
+        <input type="text" id="email_Usuario" class="form-control">
+    
+        <!-- Botón para enviar los datos -->
+        <button id="guardarBtn">Enviar</button>
+
+        <!-- Este párrafo mostrará los datos ingresados por el usuario -->
+        <p id="resultado"></p> 
+    </div>
+</body>
+</html>

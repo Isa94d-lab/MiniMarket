@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Clase para agregar padding al body */
+body {
+    padding: 1rem; /* p-3 de Bootstrap */
+    margin: 0; /* m-0 de Bootstrap */
+    border: 0; /* border-0 de Bootstrap */
+    font-family: "Roboto Condensed", serif;
+    ;
+  }
+  
+  /* Estilos para las etiquetas de formularios */
+  label.form-label {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: 600;
+    margin-top: .5rem;
+  }
+  
+  /* Estilos para los campos de entrada (input) */
+  input.form-control {
+    display: block;
+    width: 50%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+  }
+  
+  /* Estilos para el texto debajo del campo de entrada */
+  div.form-text {
+    display: block;
+    font-size: .875rem;
+    color: #6c757d;
+    margin-top: .25rem;
+  }
+  
+  /* Clase personalizada bd-example (si se define más adelante en el CSS) */
+  /* Aquí deberías agregar la definición de la clase si es necesario */
+  /* .bd-example { */
+    /* Estilos personalizados */
+  /* } */
+
+
+
+  button {
+    display: inline-block;
+    padding: .375rem .75rem; /* Similar al padding de los campos de entrada */
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ced4da; /* Borde similar al de los campos */
+    border-radius: .25rem;
+    background-color: #007bff; /* Color de fondo (azul) */
+    color: #fff; /* Color del texto */
+    transition: background-color 0.2s ease, border-color 0.2s ease; /* Efecto de transición para hover */
+    margin-top: 5px;
+  }
+  
+  /* Estilo para el estado hover del botón */
+  button:hover {
+    background-color: #0056b3; /* Fondo más oscuro al hacer hover */
+    border-color: #004085; /* Borde más oscuro al hacer hover */
+  }
+  
+  /* Estilo para el estado deshabilitado */
+  button:disabled {
+    background-color: #6c757d; /* Fondo gris */
+    border-color: #6c757d; /* Borde gris */
+    cursor: not-allowed; /* Cambia el cursor a no permitido */
+    opacity: 0.65; /* Opacidad reducida */
+  }
