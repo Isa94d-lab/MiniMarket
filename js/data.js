@@ -83,5 +83,4 @@ export const guardarProducto = () => {
     producto.cantidad = cantidad; // Guardamos la cantidad del producto
 
     console.log(producto);
-
 }
