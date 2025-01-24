@@ -18,13 +18,13 @@ export const guardarValor = () => {
     usuario.email = email;    // Guardamos el email del usuario
 
     // Mostrar los datos almacenados en el párrafo con id="resultado"
-    document.getElementById("resultado").innerText = `
-        ID: ${usuario.id}
-        Nombre: ${usuario.nombre}
-        Apellido: ${usuario.apellido}
-        Dirección: ${usuario.direccion}
-        Email: ${usuario.email}
-    `;
+        /* document.getElementById("resultado").innerText = `
+            ID: ${usuario.id}
+            Nombre: ${usuario.nombre}
+            Apellido: ${usuario.apellido}
+            Dirección: ${usuario.direccion}
+            Email: ${usuario.email}
+        `; */
 
     // También podemos mostrar el objeto completo en la consola para verlo en formato JSON
     console.log(usuario);

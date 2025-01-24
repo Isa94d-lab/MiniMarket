@@ -10,31 +10,75 @@
 </head>
 <body>
     <div class="conteiner1">
-        <!-- Input para que el usuario ingrese su ID -->
-        <label for="id_Usuario" class="form-label">ID: </label>
-        <input type="text" id="id_Usuario" class="form-control">
+        <div class="cuadrado">
+            <!-- Input para que el usuario ingrese su ID -->
+            <label for="factura_Usuario" class="form-label">Numero de Factura: </label>
+            <input type="number" id="factura_Usuario" class="form-control form-control1" placeholder="Numero de tu factura">
 
-        <!-- Nombre del usuario -->
-        <label for="nombre_Usuario" class="form-label">Nombre del usuario: </label>
-        <input type="text" id="nombre_Usuario" class="form-control">
+            <!-- Input para que el usuario ingrese su ID -->
+            <label for="id_Usuario" class="form-label">ID: </label>
+            <input type="number" id="id_Usuario" class="form-control form-control1" placeholder="Ingresa tu ID">
 
-        <!-- Apellido del usuario -->
-        <label for="apellido_Usuario" class="form-label">Apellido del usuario: </label>
-        <input type="text" id="apellido_Usuario" class="form-control">
+            <!-- Nombre del usuario -->
+            <label for="nombre_Usuario" class="form-label">Nombre: </label>
+            <input type="text" id="nombre_Usuario" class="form-control form-control1" placeholder="Ingresa tu nombre">
 
-        <!-- Dirección del usuario -->
-        <label for="direccion_Usuario" class="form-label">Dirección: </label>
-        <input type="text" id="direccion_Usuario" class="form-control">
+            <!-- Apellido del usuario -->
+            <label for="apellido_Usuario" class="form-label">Apellido del usuario: </label>
+            <input type="text" id="apellido_Usuario" class="form-control form-control1" placeholder="Ingresa tu apellido">
 
-        <!-- Email del usuario -->
-        <label for="email_Usuario" class="form-label">Email: </label>
-        <input type="text" id="email_Usuario" class="form-control">
-    
-        <!-- Botón para enviar los datos -->
-        <button id="guardarBtn">Enviar</button>
+            <!-- Dirección del usuario -->
+            <label for="direccion_Usuario" class="form-label">Dirección: </label>
+            <input type="text" id="direccion_Usuario" class="form-control form-control1" placeholder="Ingresa tu direccion">
 
-        <!-- Este párrafo mostrará los datos ingresados por el usuario -->
-        <p id="resultado"></p> 
+            <!-- Email del usuario -->
+            <label for="email_Usuario" class="form-label">Email: </label>
+            <input type="email" id="email_Usuario" class="form-control form-control1" placeholder="Ingresa tu email">
+        
+            <!-- Botón para enviar los datos -->
+            <button id="guardarBtn">Enviar</button>
+
+            <!-- Este párrafo mostrará los datos ingresados por el usuario -->
+            <p id="resultado"></p> 
+        </div>
     </div>
-</body>
+
+    <div class="conteiner1 conteiner2">
+        <div class="cuadrado2">
+            <table>
+                <tr>
+                    <td>
+                        <label for="code-product" class="form-label">Codigo de producto: </label>
+                        <select class="form-control form-select form-select2" aria-label="Default select example" id="product-select">
+                            <option selected>Selecciona un codigo de producto</option>
+                            <option value="1">101</option>
+                            <option value="2">102</option>
+                            <option value="3">103</option>
+                            <option value="4">104</option>
+                            <option value="5">105</option>
+                            <option value="6">106</option>
+                        </select>
+                    </td>
+    
+                    <td>
+                        <label for="name-product" class="form-label">Producto seleccionado: </label>
+                        <input class="form-control form-select2" type="text" id="name-product" value="No se ha ingresado un producto" aria-label="Disabled input example" disabled readonly>
+                    </td>
+                    
+                </tr>
+    
+                <tr>
+                    <td>
+                        <label for="price-product" class="form-label">Precio por unidad: </label>
+                        <input class="form-control form-select2" type="text" id="price-product" value="No se ha ingresado un producto" aria-label="Disabled input example" disabled readonly>
+                    </td>
+                    <td>
+                        <label for="cantidad" class="form-label">Cantidad: </label>
+                        <input type="number" id="cantidad" class="form-control form-select2" placeholder="Ingresa la cantidad">
+                    </td>
+                </tr>
+            </table>
+            <button id="guardarBtn2">Enviar</button>
+        </div>
+    </div>
 </html>

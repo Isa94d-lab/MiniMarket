@@ -6,9 +6,27 @@ body {
     margin: 0; /* m-0 de Bootstrap */
     border: 0; /* border-0 de Bootstrap */
     font-family: "Roboto Condensed", serif;
-    ;
+    background-color: #d9e1e9;
   }
-  
+
+  /* ------------ CONTEINER 1 ------------ */
+
+  .conteiner1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cuadrado {
+    background-color: white;
+    height: 500px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+
   /* Estilos para las etiquetas de formularios */
   label.form-label {
     display: block;
@@ -18,15 +36,18 @@ body {
   }
   
   /* Estilos para los campos de entrada (input) */
-  input.form-control {
+  .form-control {
     display: block;
-    width: 50%;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
     background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+  }
+
+  .form-control1 {
+    width: 500px;
   }
   
   /* Estilos para el texto debajo del campo de entrada */
@@ -35,6 +56,13 @@ body {
     font-size: .875rem;
     color: #6c757d;
     margin-top: .25rem;
+  }
+
+  /* Estilo para el texto arriba de los input */
+  .form-label {
+    display: flex;
+    align-items: flex-start;
+    text-align: left !important;
   }
   
   /* Clase personalizada bd-example (si se define más adelante en el CSS) */
@@ -73,3 +101,84 @@ body {
     cursor: not-allowed; /* Cambia el cursor a no permitido */
     opacity: 0.65; /* Opacidad reducida */
   }
+
+
+  #resultado {
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    font-size: 1rem; /* Ajusta el tamaño de fuente */
+    line-height: 1.5; /* Mejora la legibilidad */
+    margin-top: 1rem; /* Agrega espacio entre el botón y el resultado */
+    padding: 0.5rem; /* Agrega un pequeño relleno */
+    border-radius: .25rem; /* Bordes redondeados */
+    white-space: pre-line; /* Mantiene los saltos de línea */
+} 
+
+
+/* ------------ HASTA ACA EL CONTEINER 1 ------------ */
+
+/* ------------ CONTEINER 2  ------------ */
+
+.conteiner2 {
+  margin-top: 50px;
+}
+
+.cuadrado2 {
+  background-color: white;
+  height: 200px; 
+  width: 600px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+td {
+  width: 50%;
+}
+
+.form-select2 {
+  width: 200px;
+}
+
+/* Estilos para el selector (select) */
+select.form-select {
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  width: 225px;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da; /* Borde similar */
+  border-radius: .25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Efecto hover para el selector */
+select.form-select:hover {
+  border-color: #80bdff; /* Color del borde al hacer hover */
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25); /* Sombra azul clara */
+  cursor: pointer;
+}
+
+/* Estilo para el estado de enfoque (focus) */
+select.form-select:focus {
+  border-color: #007bff; /* Azul más intenso */
+  outline: none;
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .5);
+}
+
+/* Estilo para las opciones dentro del select */
+select.form-select option {
+  color: #495057; /* Texto principal */
+  background-color: #fff; /* Fondo blanco */
+  padding: .5rem;
+}
+
+/* Opcional: Ajustes de espaciado para el placeholder */
+select.form-select option[selected] {
+  font-weight: bold;
+  color: #6c757d; /* Gris para el texto seleccionado */
+}
+
