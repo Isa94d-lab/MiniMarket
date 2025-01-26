@@ -14,14 +14,16 @@ body {
   .conteiner1 {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .cuadrado {
     background-color: white;
-    height: 500px;
-    width: 600px;
+    height: 520px;
+    width: 625px;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
@@ -29,10 +31,11 @@ body {
 
   /* Estilos para las etiquetas de formularios */
   label.form-label {
-    display: block;
+    display: flex;
     margin-bottom: .5rem;
     font-weight: 600;
     margin-top: .5rem;
+    justify-content: center;
   }
   
   /* Estilos para los campos de entrada (input) */
@@ -123,10 +126,14 @@ body {
   margin-top: 50px;
 }
 
+.conteiner3 {
+  margin-top: 50px;
+}
+
 .cuadrado2 {
   background-color: white;
-  height: 200px; 
-  width: 600px; 
+  height: 240px; 
+  width: 650px; 
   display: flex;
   align-items: center;
   justify-content: center;

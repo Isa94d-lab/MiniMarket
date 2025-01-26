@@ -1,7 +1,8 @@
 
-import { data_products, guardarProducto } from "./js/data.js";
+import { data_products, guardarProducto, ProductComponent } from "./js/data.js";
 import { guardarValor } from "./js/guardarValor.js"; 
 import { generateCode } from "./js/radomcode.js";
+
 
 guardarValor
 
@@ -12,3 +13,18 @@ guardarProducto()
 document.getElementById("guardarBtn2").addEventListener("click", guardarProducto);
 
 generateCode
+
+ProductComponent
+
+
+
+
+
+
+
+
+
+
+
+
+// ----------------------------------------------------------------------------------------- 
