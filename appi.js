@@ -1,6 +1,6 @@
 
 import { data_products, guardarProducto, ProductComponent } from "./js/data.js";
-import { guardarValor } from "./js/guardarValor.js"; 
+import { generarFactura, guardarValor } from "./js/guardarValor.js"; 
 import { generateCode } from "./js/radomcode.js";
 
 
@@ -16,6 +16,7 @@ generateCode
 
 ProductComponent
 
+generarFactura
 
 
 
