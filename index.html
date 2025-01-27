@@ -41,51 +41,32 @@
         </div>
     </div>
 
-    <div class="conteiner1 conteiner2">
-        <div class="cuadrado2">
-            <table>
-                <tr>
-                    <td>
-                        <label for="code-product" class="form-label">Codigo de producto: </label>
-                        <select class="form-control form-select form-select2" aria-label="Default select example" id="product-select">
-                            <option selected>Selecciona un codigo de producto</option>
-                            <option value="1">101</option>
-                            <option value="2">102</option>
-                            <option value="3">103</option>
-                            <option value="4">104</option>
-                            <option value="5">105</option>
-                            <option value="6">106</option>
-                        </select>
-                    </td>
-    
-                    <td>
-                        <label for="name-product" class="form-label">Producto seleccionado: </label>
-                        <input class="form-control form-select2" type="text" id="name-product" value="No se ha ingresado un producto" aria-label="Disabled input example" disabled readonly>
-                    </td>
-                    
-                </tr>
-    
-                <tr>
-                    <td>
-                        <label for="price-product" class="form-label">Precio por unidad: </label>
-                        <input class="form-control form-select2" type="text" id="price-product" value="No se ha ingresado un producto" aria-label="Disabled input example" disabled readonly>
-                    </td>
-                    <td>
-                        <label for="cantidad" class="form-label">Cantidad: </label>
-                        <input type="number" id="cantidad" class="form-control form-select2" placeholder="Ingresa la cantidad">
-                    </td>
-                </tr>
-            </table>
-            <button id="guardarBtn2">Enviar</button>
-        </div>
-    </div>
-
+    <!-- A;adir producto -->
     <div class="conteiner1 conteiner3">
-        <div class="cuadrado2">
           <label for="direccion_Usuario" class="form-label">Añadir producto:</label>
           <product-component></product-component>
           <button id="guardarBtn3">Enviar</button>
         </div>
+    </div>
+
+    <div class="conteiner1 conteiner4">
+        <table>
+            <tr>Resumen Compra</tr>
+            <tr>
+                <td>Cod</td>
+                <td>Nombre</td>
+                <td>V/Unidad</td>
+                <td>Cantidad</td>
+                <td>TOTAL:</td>
+            </tr>
+            <tr>
+                <td id="show_codigo"></td>
+                <td id="show_nombre"></td>
+                <td id="show_valorUnidad"></td>
+                <td id="show_cantidad"></td>
+                <td id="show_total"></td>
+            </tr>
+        </table>
     </div>
     
 </body>

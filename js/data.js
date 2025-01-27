@@ -123,21 +123,46 @@ export class ProductComponent extends HTMLElement {
             cursor: not-allowed;
             opacity: 0.65;
           }
+
+          .cuadrado3 {
+            background-color: white;
+            margin-top: 10px;
+            padding-top: 10px;
+            height: 240px; 
+            width: 1100px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+          }
+
+          .orden {
+            display: flex;
+            flex-direction: row;
+          }
+
+
         </style>
         <button type="button" class="addProduct" id="addProduct">+</button>
         <div class="detailproduct"></div>
       `;
+
+      
   
       // Referencias a elementos del Shadow DOM
       const addProductButton = this.shadowRoot.querySelector("#addProduct");
       const productContainer = this.shadowRoot.querySelector(".detailproduct");
+
   
       // Evento para añadir el HTML dinámico
       addProductButton.addEventListener("click", () => {
+        
         const productId = `product-${Date.now()}`; // Generar ID único
         const productHTML = `
           <div class="conteiner1 conteiner2" id="${productId}">
-            <div class="cuadrado2">
+            <div class="cuadrado3">
               <table>
                 <tr>
                   <td>
@@ -168,12 +193,16 @@ export class ProductComponent extends HTMLElement {
                   </td>
                 </tr>
               </table>
-              <button id="guardarBtn2">Enviar</button>
-              <button class="delete-btn" data-id="${productId}">-</button>
+              <div class="orden">
+                <button id="guardarBtn2">Enviar</button>
+                <button class="delete-btn" data-id="${productId}">-</button>
+              </div>
             </div>
           </div>
         `;
         productContainer.insertAdjacentHTML("beforeend", productHTML);
+
+
       });
   
       // Evento para eliminar dinámicamente las entradas
@@ -198,8 +227,8 @@ export class ProductComponent extends HTMLElement {
           const productId = parseInt(e.target.value);
           const selectedProduct = data_products.find(product => product[0] === productId);
 
-          const nameProductInput = e.target.closest('.cuadrado2').querySelector('#name-product');
-          const priceProductInput = e.target.closest('.cuadrado2').querySelector('#price-product');
+          const nameProductInput = e.target.closest('.cuadrado3').querySelector('#name-product');
+          const priceProductInput = e.target.closest('.cuadrado3').querySelector('#price-product');
 
           if (selectedProduct) {
             nameProductInput.value = selectedProduct[1].nombre;
@@ -219,7 +248,7 @@ export class ProductComponent extends HTMLElement {
   // Función para guardar el producto
   export const guardarProducto = (productContainer) => {
     let code = productContainer.querySelector("#product-select").value;
-    let name = productContainer.querySelector("#name-product").value;
+    let name = productContainer.querySelector("#name-product").value; 
     let price = productContainer.querySelector("#price-product").value;
     let cantidad = productContainer.querySelector("#cantidad").value;
 
@@ -232,31 +261,7 @@ export class ProductComponent extends HTMLElement {
 
     const guardarBtn = document.getElementById("guardarBtn");
 
-    guardarBtn.addEventListener("click", function () {
-    // Obtén los valores de los inputs
-    const idUsuario = document.getElementById("id_Usuario").value;
-    const nombreUsuario = document.getElementById("nombre_Usuario").value;
-    const apellidoUsuario = document.getElementById("apellido_Usuario").value;
-    const direccionUsuario = document.getElementById("direccion_Usuario").value;
-    const emailUsuario = document.getElementById("email_Usuario").value;
-
-    // Muestra los datos en algún lugar de la página (puede ser dentro de la misma sección)
-    const datosContainer = document.querySelector(".conteiner1 .cuadrado");
-
-    // Verifica si los campos no están vacíos antes de mostrarlos
-    if (idUsuario && nombreUsuario && apellidoUsuario && direccionUsuario && emailUsuario) {
-        const datosHTML = `
-            <p><strong>ID:</strong> ${idUsuario}</p>
-            <p><strong>Nombre:</strong> ${nombreUsuario}</p>
-            <p><strong>Apellido:</strong> ${apellidoUsuario}</p>
-            <p><strong>Dirección:</strong> ${direccionUsuario}</p>
-            <p><strong>Email:</strong> ${emailUsuario}</p>
-        `;
-
-        // Inserta los datos dentro del contenedor de la primera sección
-        datosContainer.innerHTML = datosHTML;
-    } else {
-        alert("Por favor, completa todos los campos.");
-    }
-});
 }; 
+
+
+ 
