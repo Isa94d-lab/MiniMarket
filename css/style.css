@@ -144,7 +144,8 @@ body {
 }
 
 td {
-  width: 50%;
+  width: 30%;
+  text-align: center;
 }
 
 .form-select2 {

@@ -1,4 +1,5 @@
 let producto = {};
+
 // Datos de productos
 export const data_products = [
     [
@@ -8,7 +9,6 @@ export const data_products = [
             'precio': '2.000' 
         }
     ],
-
     [
         2, 
         { 
@@ -16,7 +16,6 @@ export const data_products = [
             'precio': '3.000' 
         }
     ],
-
     [
         3, 
         { 
@@ -24,7 +23,6 @@ export const data_products = [
             'precio': '1.500' 
         }
     ],
-
     [
         4, 
         { 
@@ -32,7 +30,6 @@ export const data_products = [
             'precio': '5.000' 
         }
     ],
-
     [
         5, 
         { 
@@ -40,7 +37,6 @@ export const data_products = [
             'precio': '2.500' 
         }
     ],
-
     [
         6, 
         { 
@@ -53,14 +49,12 @@ export const data_products = [
 export class ProductComponent extends HTMLElement {
     constructor() {
       super();
-      this.attachShadow({ mode: "open" }); // Usar Shadow DOM para encapsulación
+      this.attachShadow({ mode: "open" });
     }
-  
+
     connectedCallback() {
-      // Crear el contenido del componente con estilos incluidos
       this.shadowRoot.innerHTML = `
         <style>
-          /* Estilos para las etiquetas de formularios */
           label.form-label {
             display: flex;
             margin-bottom: .5rem;
@@ -68,7 +62,7 @@ export class ProductComponent extends HTMLElement {
             margin-top: .5rem;
             justify-content: center;
           }
-  
+
           .form-control {
             display: block;
             padding: .375rem .75rem;
@@ -79,24 +73,11 @@ export class ProductComponent extends HTMLElement {
             border: 1px solid #ced4da;
             border-radius: .25rem;
           }
-  
+
           .form-control1 {
             width: 500px;
           }
-  
-          div.form-text {
-            display: block;
-            font-size: .875rem;
-            color: #6c757d;
-            margin-top: .25rem;
-          }
-  
-          .form-label {
-            display: flex;
-            align-items: flex-start;
-            text-align: left !important;
-          }
-  
+
           button {
             display: inline-block;
             padding: .375rem .75rem;
@@ -111,12 +92,12 @@ export class ProductComponent extends HTMLElement {
             transition: background-color 0.2s ease, border-color 0.2s ease;
             margin-top: 5px;
           }
-  
+
           button:hover {
             background-color: #0056b3;
             border-color: #004085;
           }
-  
+
           button:disabled {
             background-color: #6c757d;
             border-color: #6c757d;
@@ -142,24 +123,16 @@ export class ProductComponent extends HTMLElement {
             display: flex;
             flex-direction: row;
           }
-
-
         </style>
         <button type="button" class="addProduct" id="addProduct">+</button>
         <div class="detailproduct"></div>
       `;
 
-      
-  
-      // Referencias a elementos del Shadow DOM
       const addProductButton = this.shadowRoot.querySelector("#addProduct");
       const productContainer = this.shadowRoot.querySelector(".detailproduct");
 
-  
-      // Evento para añadir el HTML dinámico
       addProductButton.addEventListener("click", () => {
-        
-        const productId = `product-${Date.now()}`; // Generar ID único
+        const productId = `product-${Date.now()}`;
         const productHTML = `
           <div class="conteiner1 conteiner2" id="${productId}">
             <div class="cuadrado3">
@@ -167,7 +140,7 @@ export class ProductComponent extends HTMLElement {
                 <tr>
                   <td>
                     <label for="code-product" class="form-label">Código de producto:</label>
-                    <select class="form-control form-select form-select2" aria-label="Default select example" id="product-select">
+                    <select class="form-control form-select form-select2" id="product-select">
                       <option selected>Selecciona un código de producto</option>
                       <option value="1">101</option>
                       <option value="2">102</option>
@@ -179,13 +152,13 @@ export class ProductComponent extends HTMLElement {
                   </td>
                   <td>
                     <label for="name-product" class="form-label">Producto seleccionado:</label>
-                    <input class="form-control form-select2" type="text" id="name-product" value="No se ha ingresado un producto" aria-label="Disabled input example" disabled readonly>
+                    <input class="form-control form-select2" type="text" id="name-product" value="No se ha ingresado un producto" disabled readonly>
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <label for="price-product" class="form-label">Precio por unidad:</label>
-                    <input class="form-control form-select2" type="text" id="price-product" value="No se ha ingresado un producto" aria-label="Disabled input example" disabled readonly>
+                    <input class="form-control form-select2" type="text" id="price-product" value="No se ha ingresado un producto" disabled readonly>
                   </td>
                   <td>
                     <label for="cantidad" class="form-label">Cantidad:</label>
@@ -201,11 +174,8 @@ export class ProductComponent extends HTMLElement {
           </div>
         `;
         productContainer.insertAdjacentHTML("beforeend", productHTML);
-
-
       });
-  
-      // Evento para eliminar dinámicamente las entradas
+
       productContainer.addEventListener("click", (e) => {
         if (e.target.classList.contains("delete-btn")) {
           const productId = e.target.getAttribute("data-id");
@@ -215,13 +185,11 @@ export class ProductComponent extends HTMLElement {
           }
         }
 
-        // Si el botón que se presionó es el de enviar
         if (e.target.id === "guardarBtn2") {
           guardarProducto(e.target.closest(".conteiner1"));
         }
       });
 
-      // Evento de cambio en el select
       productContainer.addEventListener('change', function(e) {
         if (e.target.id === 'product-select') {
           const productId = parseInt(e.target.value);
@@ -241,27 +209,103 @@ export class ProductComponent extends HTMLElement {
       });
     }
   }
-  
-  // Definir el componente
+
+// -------------------------------------------------
+
   customElements.define("product-component", ProductComponent);
-  
-  // Función para guardar el producto
+
   export const guardarProducto = (productContainer) => {
+    // Obtener los valores del formulario
     let code = productContainer.querySelector("#product-select").value;
-    let name = productContainer.querySelector("#name-product").value; 
-    let price = productContainer.querySelector("#price-product").value;
-    let cantidad = productContainer.querySelector("#cantidad").value;
+    let name = productContainer.querySelector("#name-product").value;
+    let price = productContainer.querySelector("#price-product").value; // Mantener el formato original
+    let cantidad = parseInt(productContainer.querySelector("#cantidad").value); // Obtener la cantidad ingresada
 
-    producto.code = code;          // Guardamos el codigo del producto
-    producto.name = name;          // Guardamos el nombre del producto
-    producto.price = price;        // Guardamos el precio del producto
-    producto.cantidad = cantidad;  // Guardamos la cantidad del producto
+    // Calcular el total
+    let total = parseFloat(price) * cantidad; // Mantener como string para evitar conversión de decimales
 
-    console.log(producto); 
+    // Crear el objeto producto
+    let producto = {
+        code: code,
+        name: name,
+        price: price,
+        cantidad: cantidad,
+        total: total.toString() // Convertir total a string para mantener el formato
+    };
 
-    const guardarBtn = document.getElementById("guardarBtn");
+    // Verificar si ya existe una fila con ese código
+    let filaExistente = document.querySelector(`#tablaResumen tbody tr[data-code="${code}"]`);
+    if (filaExistente) {
+        // Si existe, reemplazar los valores de la fila
+        reemplazarFilaExistente(filaExistente, producto);
+    } else {
+        // Si no existe, agregar una nueva fila
+        agregarFilaTabla(producto);
+    }
+};
 
-}; 
+// Función para agregar una nueva fila a la tabla
+// Función para agregar una nueva fila a la tabla
+const agregarFilaTabla = (producto) => {
+    // Obtener el cuerpo de la tabla
+    let tbody = document.querySelector("#tablaResumen tbody");
+
+    // Crear una nueva fila
+    let fila = document.createElement("tr");
+    fila.setAttribute("data-code", producto.code); // Asignar el código al atributo de la fila
+
+    // Crear celdas y agregar los datos del producto
+    let tdCode = document.createElement("td");
+    tdCode.textContent = producto.code;
+    fila.appendChild(tdCode);
+
+    let tdName = document.createElement("td");
+    tdName.textContent = producto.name;
+    fila.appendChild(tdName);
+
+    let tdPrice = document.createElement("td");
+    tdPrice.textContent = producto.price; // Mostrar el precio tal como está
+    fila.appendChild(tdPrice);
+
+    let tdCantidad = document.createElement("td");
+    tdCantidad.textContent = producto.cantidad;
+    fila.appendChild(tdCantidad);
+
+    let tdTotal = document.createElement("td");
+    tdTotal.textContent = producto.total; // Mostrar el total tal como está
+    fila.appendChild(tdTotal);
+
+    // Crear celda para el botón eliminar
+    let tdDelete = document.createElement("td");
+    let deleteButton = document.createElement("button");
+    deleteButton.textContent = "-";
+    deleteButton.classList.add("delete-row-btn");
+    deleteButton.setAttribute("data-code", producto.code); // Asignar el código al botón
+    tdDelete.appendChild(deleteButton);
+    fila.appendChild(tdDelete);
+
+    // Agregar la fila al cuerpo de la tabla
+    tbody.appendChild(fila);
+};
+
+// Manejador para eliminar fila de la tabla y formulario asociado
+document.querySelector("#tablaResumen").addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete-row-btn")) {
+        const code = e.target.getAttribute("data-code"); // Obtener el código del producto
+        const fila = e.target.closest("tr");
+
+        if (fila) {
+            // Eliminar fila de la tabla
+            fila.remove();
+
+            // Buscar y eliminar formulario asociado en los formularios dinámicos
+            const formContainer = document.querySelector(".detailproduct");
+            const form = formContainer.querySelector(`[data-code="${code}"]`);
+            if (form) {
+                form.remove();
+            }
+        }
+    }
+});
 
 
- 
