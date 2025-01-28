@@ -10,6 +10,29 @@ export class generateCode extends HTMLElement {
         link.setAttribute('rel', 'stylesheet');
         link.setAttribute('href', '../css/style.css'); // Ajusta la ruta si es necesario
 
+        // Crear un bloque de estilos personalizados
+        const style = document.createElement('style');
+        style.textContent = `
+            label.form-label {
+                display: flex;
+                margin-bottom: .5rem;
+                font-weight: 600;
+                margin-top: .5rem;
+                justify-content: center;
+            }
+
+            input.form-control {
+                display: block;
+                padding: .375rem .75rem;
+                width: 500px;
+                font-size: 1rem;
+                line-height: 1.5;
+                background-color: #fff;
+                border: 1px solid #ced4da;
+                border-radius: .25rem;
+            }
+        `;
+
         // Crear el contenedor para el label y el input dentro del Shadow DOM
         const container = document.createElement('div');
         
@@ -34,6 +57,7 @@ export class generateCode extends HTMLElement {
 
         // Agregar el <link> de estilos al Shadow DOM
         this.shadowRoot.appendChild(link);
+        this.shadowRoot.appendChild(style); // Agregar el bloque de estilos al Shadow DOM
 
         // Agregar el label y el input al contenedor
         container.appendChild(label);

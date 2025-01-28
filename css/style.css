@@ -92,7 +92,7 @@ body {
     background-color: #007bff; /* Color de fondo (azul) */
     color: #fff; /* Color del texto */
     transition: background-color 0.2s ease, border-color 0.2s ease; /* Efecto de transición para hover */
-    margin-top: 20px;
+    margin-top: 10px;
   }
   
   /* Estilo para el estado hover del botón */
