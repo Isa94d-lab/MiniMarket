@@ -34,10 +34,18 @@ export const guardarValor = () => {
 document.getElementById("guardarBtn").addEventListener("click", guardarValor);
 
 
+// Ya tienes esta parte, solo agregamos el manejador para el segundo botón.
 document.getElementById("guardarBtn").addEventListener("click", () => {
-    guardarValor();
-    generarFactura();
+    guardarValor(); // Guardamos los datos del usuario
+    generarFactura(); // Generamos la factura
 });
+
+// Ahora también asociamos el mismo comportamiento al botón guardarBtn3
+document.getElementById("guardarBtn3").addEventListener("click", () => {
+    guardarValor(); // Guardamos los datos del usuario
+    generarFactura(); // Generamos la factura
+});
+
 
 // Función para generar la factura
 export const generarFactura = () => {
@@ -45,7 +53,7 @@ export const generarFactura = () => {
     const idUsuario = usuario.id;
     const nombreUsuario = usuario.nombre;
     const apellidoUsuario = usuario.apellido;
-    
+
     // Obtener el número de factura generado
     const numeroFactura = document.querySelector("generate-code").shadowRoot.querySelector("#codigo").value;
 
@@ -63,9 +71,14 @@ export const generarFactura = () => {
         productos.push(producto);
     });
 
+    // Calcular el precio total, el IVA y el total con IVA
+    const precioOriginal = calcularTotalCompra(productos);
+    const iva = (precioOriginal * 0.19).toFixed(2);
+    const precioConIVA = (parseFloat(precioOriginal) + parseFloat(iva)).toFixed(2);
+
     // Verificar si ya existe una factura
     let facturaElement = document.querySelector("#factura");
-    
+
     // Si la factura no existe, crear una nueva
     if (!facturaElement) {
         facturaElement = document.createElement('div');
@@ -106,17 +119,19 @@ export const generarFactura = () => {
         `;
     });
 
+    // Agregar los cálculos finales al HTML de la factura
     facturaHTML += `
                 </tbody>
             </table>
-            <p><strong>Total de la compra: </strong>$${calcularTotalCompra(productos)}</p>
+            <p><strong>Precio original:</strong> $${precioOriginal}</p>
+            <p><strong>IVA (19%):</strong> $${iva}</p>
+            <p><strong>Total con IVA:</strong> $${precioConIVA}</p>
         </div>
     `;
 
     // Actualizar el contenido de la factura existente
     facturaElement.innerHTML = facturaHTML;
 };
-
 
 // Función para calcular el total de la compra
 const calcularTotalCompra = (productos) => {
@@ -125,8 +140,7 @@ const calcularTotalCompra = (productos) => {
 
 
 // Función para actualizar la factura con los datos más recientes
-// Función para actualizar la factura con los datos más recientes
-// Función para actualizar la factura con los datos más recientes
+// Función para actualizar la factura con los productos modificados
 const actualizarFactura = () => {
     // Verificar si ya existe una factura en el DOM
     let facturaElement = document.querySelector("#factura");
@@ -141,7 +155,7 @@ const actualizarFactura = () => {
     let facturaNum = document.querySelector("#codigo").value; // Número de factura generado en el input
 
     // Crear el contenido de la factura
-    facturaElement.innerHTML = `
+    let facturaHTML = `
         <h3>Factura - Número: ${facturaNum}</h3>
         <h4>Datos del Usuario:</h4>
         <p>ID: ${usuario.id}</p>
@@ -162,16 +176,31 @@ const actualizarFactura = () => {
                 </tr>
             </thead>
             <tbody>
-                <!-- Las filas de los productos se agregarán aquí -->
-                ${generarFilasProductos()}
+                ${generarFilasProductos()}  <!-- Esta función genera las filas con los productos -->
             </tbody>
         </table>
     `;
+
+    // Actualizar el contenido de la factura existente
+    facturaElement.innerHTML = facturaHTML;
 };
+
+
+// Asociar el evento click al botón de enviar
+document.getElementById("guardarBtn").addEventListener("click", () => {
+    guardarValor(); // Guardar los valores del usuario
+    generarFactura(); // Generar la factura
+});
+
+// También asociar el botón guardarBtn3 (si es un botón adicional)
+document.getElementById("guardarBtn3").addEventListener("click", () => {
+    guardarValor(); // Guardar los valores del usuario
+    generarFactura(); // Generar la factura
+});
 
 // Función que genera las filas con los productos de la tabla resumen
 const generarFilasProductos = () => {
-    // Obtener los productos de la tabla de resumen
+    // Obtener las filas de la tabla
     let filas = '';
     const rows = document.querySelectorAll("#tablaResumen tbody tr");
 
@@ -194,6 +223,17 @@ const generarFilasProductos = () => {
     });
 
     return filas;
-
-    
 };
+
+
+// Asociamos el evento de clic a ambos botones
+const botonesGuardar = ["guardarBtn", "guardarBtn3"];
+botonesGuardar.forEach(id => {
+    document.getElementById(id).addEventListener("click", () => {
+        guardarValor();  // Guardamos los datos del usuario
+        generarFactura();  // Generamos la factura
+        actualizarFactura();  // Actualizamos la factura con los datos más recientes
+    });
+});
+
+

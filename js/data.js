@@ -90,7 +90,7 @@ export class ProductComponent extends HTMLElement {
             background-color: #007bff;
             color: #fff;
             transition: background-color 0.2s ease, border-color 0.2s ease;
-            margin-top: 5px;
+            margin-top: 20px;
           }
 
           button:hover {
@@ -123,6 +123,7 @@ export class ProductComponent extends HTMLElement {
             display: flex;
             flex-direction: row;
           }
+
         </style>
         <button type="button" class="addProduct" id="addProduct">+</button>
         <div class="detailproduct"></div>
@@ -221,6 +222,12 @@ export class ProductComponent extends HTMLElement {
     let price = productContainer.querySelector("#price-product").value; // Mantener el formato original
     let cantidad = parseInt(productContainer.querySelector("#cantidad").value); // Obtener la cantidad ingresada
 
+    // Validar cantidad válida
+    if (isNaN(cantidad) || cantidad <= 0) {
+        alert("Por favor ingrese una cantidad válida.");
+        return;
+    }
+
     // Calcular el total
     let total = parseFloat(price) * cantidad; // Mantener como string para evitar conversión de decimales
 
@@ -236,7 +243,7 @@ export class ProductComponent extends HTMLElement {
     // Verificar si ya existe una fila con ese código
     let filaExistente = document.querySelector(`#tablaResumen tbody tr[data-code="${code}"]`);
     if (filaExistente) {
-        // Si existe, reemplazar los valores de la fila
+        // Si existe, actualizar los valores de la fila
         reemplazarFilaExistente(filaExistente, producto);
     } else {
         // Si no existe, agregar una nueva fila
@@ -244,68 +251,47 @@ export class ProductComponent extends HTMLElement {
     }
 };
 
-// Función para agregar una nueva fila a la tabla
+// Función para reemplazar una fila existente en la tabla
+const reemplazarFilaExistente = (fila, producto) => {
+    fila.querySelector("td:nth-child(2)").textContent = producto.name; // Actualizar nombre
+    fila.querySelector("td:nth-child(3)").textContent = producto.price; // Actualizar precio
+    fila.querySelector("td:nth-child(4)").textContent = producto.cantidad; // Actualizar cantidad
+    fila.querySelector("td:nth-child(5)").textContent = producto.total; // Actualizar total
+};
+
 // Función para agregar una nueva fila a la tabla
 const agregarFilaTabla = (producto) => {
-    // Obtener el cuerpo de la tabla
     let tbody = document.querySelector("#tablaResumen tbody");
 
-    // Crear una nueva fila
     let fila = document.createElement("tr");
-    fila.setAttribute("data-code", producto.code); // Asignar el código al atributo de la fila
+    fila.setAttribute("data-code", producto.code); // Asignar código como atributo
 
-    // Crear celdas y agregar los datos del producto
-    let tdCode = document.createElement("td");
-    tdCode.textContent = producto.code;
-    fila.appendChild(tdCode);
+    fila.innerHTML = `
+        <td>${producto.code}</td>
+        <td>${producto.name}</td>
+        <td>${producto.price}</td>
+        <td>${producto.cantidad}</td>
+        <td>${producto.total}</td>
+        <td><button class="delete-row-btn justbutton" data-code="${producto.code}">-</button></td>
+    `;
 
-    let tdName = document.createElement("td");
-    tdName.textContent = producto.name;
-    fila.appendChild(tdName);
-
-    let tdPrice = document.createElement("td");
-    tdPrice.textContent = producto.price; // Mostrar el precio tal como está
-    fila.appendChild(tdPrice);
-
-    let tdCantidad = document.createElement("td");
-    tdCantidad.textContent = producto.cantidad;
-    fila.appendChild(tdCantidad);
-
-    let tdTotal = document.createElement("td");
-    tdTotal.textContent = producto.total; // Mostrar el total tal como está
-    fila.appendChild(tdTotal);
-
-    // Crear celda para el botón eliminar
-    let tdDelete = document.createElement("td");
-    let deleteButton = document.createElement("button");
-    deleteButton.textContent = "-";
-    deleteButton.classList.add("delete-row-btn");
-    deleteButton.setAttribute("data-code", producto.code); // Asignar el código al botón
-    tdDelete.appendChild(deleteButton);
-    fila.appendChild(tdDelete);
-
-    // Agregar la fila al cuerpo de la tabla
     tbody.appendChild(fila);
 };
 
-// Manejador para eliminar fila de la tabla y formulario asociado
+// Manejador para eliminar filas de la tabla y formularios dinámicos
 document.querySelector("#tablaResumen").addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-row-btn")) {
-        const code = e.target.getAttribute("data-code"); // Obtener el código del producto
+        const code = e.target.getAttribute("data-code");
         const fila = e.target.closest("tr");
 
         if (fila) {
-            // Eliminar fila de la tabla
-            fila.remove();
+            fila.remove(); // Eliminar fila de la tabla
 
-            // Buscar y eliminar formulario asociado en los formularios dinámicos
             const formContainer = document.querySelector(".detailproduct");
-            const form = formContainer.querySelector(`[data-code="${code}"]`);
+            const form = formContainer.querySelector(`.conteiner1[data-code="${code}"]`);
             if (form) {
-                form.remove();
+                form.remove(); // Eliminar formulario asociado
             }
         }
     }
 });
-
-
